@@ -2,11 +2,11 @@
 import Sidebar from './components/Common/Sidebar';
 import Navbar from './components/Common/Navbar';
 import Footer from './components/Common/Footer';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Router, RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import appRouter from './routes/route';
 
-import Dashboard from  './components/Dashboard';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
   return (
     <>
         <div class="container-scroller">
-          <Sidebar keyName={'Hello'}/>
+          <Sidebar />
           <div class="container-fluid page-body-wrapper">
             <Navbar />
             <div class="main-panel">

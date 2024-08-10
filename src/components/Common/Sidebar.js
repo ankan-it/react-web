@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-ro
 import {useEffect} from "react";
 
 export default function Header({keyName}) {
-    console.log(keyName,'keyName', React)
+    // console.log(keyName,'keyName', React)
     // let navigate = useNavigate();
     // let location = useLocation();
 

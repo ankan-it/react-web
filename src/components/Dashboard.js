@@ -1,10 +1,11 @@
+
 import React from 'react';
 
 const Dashboard= () => {
     return (
         <>
-        <h1>ok</h1>
-            {/* <div className="content-wrapper">
+       
+            <div className="content-wrapper">
                 <div className="row">
                     <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
                         <div className="card">
@@ -523,7 +524,7 @@ const Dashboard= () => {
                                 </div>
                                 <p className="text-muted">Well, it seems to be working now. </p>
                                 <div className="progress progress-md portfolio-progress">
-                                    <div className="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div className="progress-bar bg-success" role="progressbar" style={{width: "50%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
@@ -649,7 +650,7 @@ const Dashboard= () => {
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </>
     );
 }
