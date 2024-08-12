@@ -1,19 +1,22 @@
 
 
-import { createBrowserRouter, } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Dashboard from '../components/Dashboard';
+import Table from '../components/Table';
 
 
-
-
-const appRouter = () => {
+const AppRouter = () => {
     const router = createBrowserRouter([
         {
             path: "/",
             element: <Dashboard />
+        },
+        {
+            path: "/table",
+            element: <Table />
         }
     ]);
     return router;
 }
 
-export default appRouter();
+export default AppRouter();

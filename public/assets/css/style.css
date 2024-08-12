@@ -12231,6 +12231,10 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   border: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
+.sidebarButton{
+  width: 100%;
+
+}
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
@@ -24545,6 +24549,9 @@ dl li {
 /* Layouts */
 .navbar.fixed-top + .page-body-wrapper {
   padding-top: 70px;
+}
+.main-afte-toggle{
+  width: 70px;
 }
 
 @media (min-width: 992px) {
