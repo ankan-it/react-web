@@ -17,11 +17,11 @@ export default function Header({keyName}) {
     
     let changeRoute=(e,path)=>{
         e.preventDefault();
-        alert(path);
-        // navigate(path);
+        // alert(path);
+        navigate(path);
     }
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleNavigate = () => {
     //   navigate('/table'); // Navigate to the Table component
@@ -102,7 +102,7 @@ export default function Header({keyName}) {
                         </button>
                     </li>
                     <li class="nav-item menu-items">
-                        <button class="nav-link sidebarButton" href="pages/tables/basic-table.html"  onClick={(e)=>changeRoute(e,'/')}>
+                        <button class="nav-link sidebarButton"    onClick={(e)=>changeRoute(e,'/table')}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-table-large"></i>
                             </span>
@@ -128,7 +128,7 @@ export default function Header({keyName}) {
                     </li>
 
                     <li class="nav-item menu-items">
-                        <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" >
+                        <a class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic2" onClick={(e)=>openMenulevel2(e,"ui-basic2")}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
                             </span>
