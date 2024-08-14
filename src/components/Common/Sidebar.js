@@ -1,40 +1,56 @@
-import {useEffect, useState} from "react";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation, RouterProvider  } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation, RouterProvider } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
-export default function Header({keyName}) {
-    // const location = useLocation();
+export default function Header({ keyName }) {
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const [openMenu, setOpenMenu] = useState(null);
-        let openMenulevel2 =(e,openMenulevel2_id)=>{
-        e.preventDefault();
-        // alert("hi");
-        setOpenMenu(openMenu === openMenulevel2_id ? null : openMenulevel2_id);
+    // console.log(location.pathname);
 
-    }
 
-    
-    let changeRoute=(e,path)=>{
+    const [activeItem, setActiveItem] = useState(location.pathname);
+    let changeRoute = (e, path) => {
         e.preventDefault();
         // alert(path);
         navigate(path);
+        setActiveItem("");
+        setActiveItem(path);
     }
-
-    const navigate = useNavigate();
-
-    const handleNavigate = () => {
-    //   navigate('/table'); // Navigate to the Table component
-    };
+    console.log(location.pathname.startsWith());
     
+    const openMenu = (id) => {
+        var collaps_menu =document.querySelectorAll('.collapse');
+        if(collaps_menu.length>1){
+            collaps_menu.forEach(el => {
+                if (el.id !== id) {
+                    el.classList.remove('show');
+                }
+            });
+        }    
+
+        const element = document.getElementById(id);
+        if (element) {
+            element.classList.toggle('show');
+        }
+    };
+
+    const isActive = (path) => location.pathname.startsWith(path);
+
+
+
+
+
+
     // const navigate = useNavigate();
 
 
-    
+    // console.log(activeItem);
 
     return (
         <>
-        {/* <h1>asdjs</h1> */}
+            {/* <h1>asdjs</h1> */}
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                     <a class="sidebar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
@@ -46,7 +62,7 @@ export default function Header({keyName}) {
                             <div class="profile-pic">
                                 <div class="count-indicator">
                                     <img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="" />
-                                        <span class="count bg-success"></span>
+                                    <span class="count bg-success"></span>
                                 </div>
                                 <div class="profile-name">
                                     <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
@@ -91,18 +107,20 @@ export default function Header({keyName}) {
                         </div>
                     </li>
                     <li class="nav-item nav-category">
-                        <span class="nav-link sidebarButton" onClick={handleNavigate}>Navigation</span>
+                        <span class="nav-link sidebarButton">Navigation</span>
                     </li>
-                    <li class="nav-item menu-items">
-                        <button class="nav-link sidebarButton" onClick={(e)=>changeRoute(e,'/')}>
+
+                    {/* main navigation start */}
+                    <li className={`nav-item menu-items ${activeItem === '/' ? 'active' : ''}`}>
+                        <button class="nav-link sidebarButton" onClick={(e) => changeRoute(e, '/')}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-speedometer"></i>
                             </span>
                             <span class="menu-title">Dashboard</span>
                         </button>
                     </li>
-                    <li class="nav-item menu-items">
-                        <button class="nav-link sidebarButton"    onClick={(e)=>changeRoute(e,'/table')}>
+                    <li className={`nav-item menu-items ${activeItem === '/table' ? 'active' : ''}`}>
+                        <button class="nav-link sidebarButton" onClick={(e) => changeRoute(e, '/table')}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-table-large"></i>
                             </span>
@@ -110,44 +128,45 @@ export default function Header({keyName}) {
                             <i class="menu-arrow"></i>
                         </button>
                     </li>
-                    <li class="nav-item menu-items">
-                        <button class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" onClick={(e)=>openMenulevel2(e,"ui-basic")}>
+                    <li className={`nav-item menu-items ${isActive('/table')? "active":""}`}>
+                        <button class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" onClick={() => openMenu("ui-basic")}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
                             </span>
                             <span class="menu-title">Basic UI Elements</span>
                             <i class="menu-arrow"></i>
                         </button>
-                        <div  className={`collapse ${openMenu === "ui-basic" ? "show" : ""}`}  id="ui-basic">
+                        <div className={`collapse`} id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <button class="nav-link sidebarButton" >Buttons</button></li>
-                                <li class="nav-item"> <button class="nav-link sidebarButton" >Dropdowns</button></li>
-                                <li class="nav-item"> <button class="nav-link sidebarButton" >Typography</button></li>
+                                <li class="nav-item"> <button className={`nav-link sidebarButton `} onClick={(e) => changeRoute(e, '/table')}>Buttons</button></li>
+                                <li class="nav-item"> <button className={`nav-link sidebarButton `} >Dropdowns</button></li>
+                                <li class="nav-item"> <button className={`nav-link sidebarButton `} >Typography</button></li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item menu-items">
-                        <a class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic2" onClick={(e)=>openMenulevel2(e,"ui-basic2")}>
+                    <li className={`nav-item menu-items ${``}`}>
+                        <button class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" onClick={() => openMenu("ui-basic2")}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
                             </span>
                             <span class="menu-title">Basic UI Elements</span>
                             <i class="menu-arrow"></i>
-                        </a>
-                        <div  className={`collapse ${openMenu === "ui-basic2" ? "show" : ""}`}  id="ui-basic2">
+                        </button>
+                        <div className={`collapse`} id="ui-basic2">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                                <li class="nav-item"> <button className={`nav-link sidebarButton `} onClick={(e) => changeRoute(e, '/table')}>Buttons</button></li>
+                                <li class="nav-item"> <button className={`nav-link sidebarButton `} >Dropdowns</button></li>
+                                <li class="nav-item"> <button className={`nav-link sidebarButton `} >Typography</button></li>
                             </ul>
                         </div>
                     </li>
 
-            
+                    {/* main navigation end */}
+
+
                 </ul>
             </nav>
-            
+
         </>
     )
 }
