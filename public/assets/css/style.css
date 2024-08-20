@@ -11750,6 +11750,10 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   display: none;
 }
 
+.collapse2:not(.show) {
+  display: none;
+}
+
 .collapsing {
   height: 0;
   overflow: hidden;

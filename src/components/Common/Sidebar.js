@@ -19,16 +19,32 @@ export default function Header({ keyName }) {
         setActiveItem(path);
     }
     console.log(location.pathname.startsWith());
-    
+
     const openMenu = (id) => {
-        var collaps_menu =document.querySelectorAll('.collapse');
-        if(collaps_menu.length>1){
+        var collaps_menu = document.querySelectorAll('.collapse');
+        if (collaps_menu.length > 1) {
             collaps_menu.forEach(el => {
                 if (el.id !== id) {
                     el.classList.remove('show');
                 }
             });
-        }    
+        }
+
+        const element = document.getElementById(id);
+        if (element) {
+            element.classList.toggle('show');
+        }
+    };
+
+    const openMenu2 = (id) => {
+        var collaps_menu = document.querySelectorAll('.collapse2');
+        if (collaps_menu.length > 1) {
+            collaps_menu.forEach(el => {
+                if (el.id !== id) {
+                    el.classList.remove('show');
+                }
+            });
+        }
 
         const element = document.getElementById(id);
         if (element) {
@@ -128,7 +144,7 @@ export default function Header({ keyName }) {
                             <i class="menu-arrow"></i>
                         </button>
                     </li>
-                    <li className={`nav-item menu-items ${isActive('/table')? "active":""}`}>
+                    <li className={`nav-item menu-items ${isActive('/table') ? "active" : ""}`}>
                         <button class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" onClick={() => openMenu("ui-basic")}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
@@ -154,6 +170,17 @@ export default function Header({ keyName }) {
                         </button>
                         <div className={`collapse`} id="ui-basic2">
                             <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <button className={`nav-link  d-flex justify-content-between  sidebarButton `}  onClick={() => openMenu2("ui-basic3")} >Dropdowns <i class="mdi mdi-chevron-down"></i></button>
+                                    
+                                    <div className={`collapse2`} id="ui-basic3">
+                                        <ul class="nav flex-column sub-menu">
+                                            <li class="nav-item"> <button className={`nav-link sidebarButton `} onClick={(e) => changeRoute(e, '/table')}>Buttons</button></li>
+                                            <li class="nav-item"> <button className={`nav-link sidebarButton `} >Dropdowns</button></li>
+                                            <li class="nav-item"> <button className={`nav-link sidebarButton `} >Typography</button></li>
+                                        </ul>
+                                    </div>
+                                </li>
                                 <li class="nav-item"> <button className={`nav-link sidebarButton `} onClick={(e) => changeRoute(e, '/table')}>Buttons</button></li>
                                 <li class="nav-item"> <button className={`nav-link sidebarButton `} >Dropdowns</button></li>
                                 <li class="nav-item"> <button className={`nav-link sidebarButton `} >Typography</button></li>

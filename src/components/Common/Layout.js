@@ -13,7 +13,7 @@ export default function Layout() {
 
 
     useEffect(()=>{
-        console.log(localStorage.getItem('token'));
+        // console.log(localStorage.getItem('token'));
         if(localStorage.getItem('token') =="" || localStorage.getItem('token')=='undefine' || localStorage.getItem('token')==null){
             navigate('/login')
         }
