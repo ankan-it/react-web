@@ -7,53 +7,40 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation, RouterProvider,
 
 
 
-import Layout from '../components/Common/Layout';
-import Dashboard from '../components/Dashboard';
-import Table from '../components/Table';
+import Layout from '../views/Common/Layout';
+import Dashboard from '../views/Dashboard';
+import Table from '../views/Table';
+import Portal from '../views/Portal'
 
-import Login from "../components/Login";
+import Login from "../views/Login";
+import {academics_route} from "./academics_route";
 
 
 
-const isAuthenticated = () => {
-    // Replace this with your actual authentication logic
-    return localStorage.getItem("token") == null;
-};
 
-const ProtectedRoute = ({ element }) => {
-    var token = localStorage.getItem('token');
-    const { isExpired } = useJwt(token);
-    console.log(localStorage.getItem("token"), isAuthenticated());
-   
-
-    if (isAuthenticated() || isExpired) {
-        localStorage.removeItem('token');
-        return <Navigate to="/login" />;
-    }
-
-    return element;
-};
 
 const AppRouter = () => {
-    const router = createBrowserRouter(route);
+    const router = createBrowserRouter(routes);
     return router;
 }
 
-const route =[
+const routes =[
                 {
                     element: <Layout />,
-                    path:"/",
+                    // path:"/",
                     children:[
                         {
-                            path: "/",
-                            element:<ProtectedRoute element={<Dashboard />} />
-                        },
-                        {
-                            path: "/table",
-                            element:<ProtectedRoute element={ <Table />} /> 
+                            path:"/academics",
+                            children:academics_route
                         }
                     ]
+                    
+                    
 
+                },
+                {
+                    element: <Portal />,
+                    path:"/portal"
                 },
                 {
                     element: <Login />,

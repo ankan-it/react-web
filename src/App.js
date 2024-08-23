@@ -7,16 +7,6 @@ import AppRouter from './routes/route';
 function App() {
 
 
-
-
-  // const router =createBrowserRouter([
-  //     {
-  //         path:"/",
-  //         element:<Dashboard/>
-  //     }
-  // ]);
-
-
   return (
     <>
       <RouterProvider router={AppRouter} />  
