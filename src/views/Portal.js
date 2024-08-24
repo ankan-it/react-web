@@ -11,6 +11,8 @@ const Portal = () => {
     const [username, setusername] = useState("");
     const [password, setpassword] = useState("");
 
+    const [portal, setportal] = useState("");
+
     const [errorMessage, setErrorMessage] = useState('');
 
 
@@ -66,6 +68,11 @@ const Portal = () => {
             label: "Staff Member",
         }
     ];
+
+    const change_portal=(set_portal)=>{
+        setportal(set_portal);
+        navigate(set_portal);
+    }
 
 
 
@@ -162,7 +169,7 @@ const Portal = () => {
                         <div class="content-wrapper">
                             <div class="row w-100">
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card"  onClick={()=>change_portal("/academics")}>
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-center">
@@ -180,8 +187,8 @@ const Portal = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card">
+                                <div class="col-xl-2 col-sm-6 grid-margin stretch-card" >
+                                    <div class="card" >
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12  d-flex justify-content-center">

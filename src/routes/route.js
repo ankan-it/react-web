@@ -27,11 +27,15 @@ const AppRouter = () => {
 const routes =[
                 {
                     element: <Layout />,
-                    // path:"/",
+                    path:"/",
                     children:[
                         {
-                            path:"/academics",
+                            path:"academics",
                             children:academics_route
+                        },
+                        {
+                            index: true, // This will match the root path ("/")
+                            element: <Navigate to="/portal" replace />
                         }
                     ]
                     

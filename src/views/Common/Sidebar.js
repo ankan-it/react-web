@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, useLocation, RouterProvider } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { academics_route } from "../../routes/academics_route";
+
 
 
 export default function Header({ keyName }) {
@@ -13,7 +15,7 @@ export default function Header({ keyName }) {
     const [activeItem, setActiveItem] = useState(location.pathname);
     let changeRoute = (e, path) => {
         e.preventDefault();
-        // alert(path);
+        console.log(path);
         navigate(path);
         setActiveItem("");
         setActiveItem(path);
@@ -53,13 +55,111 @@ export default function Header({ keyName }) {
     };
 
     const isActive = (path) => {
-        if (path === '/') {
+        if (path === '/academics') {
             return location.pathname === path; // Ensure only the exact match for root path
         }
-        return location.pathname.startsWith(`${path}/`);
+        return location.pathname.startsWith(path);
     };
     // console.log(isActive);
 
+    const renderAcademicsMenuItems = (academics_route, parentPath = "") => {
+
+        return academics_route.map((route) => {
+            let route_level_1_path = route.path
+            let route_level_1_key = route.key
+            let route_level_1_title = route.title
+            let route_level_1_icon = (route.icon) ? <span class="menu-icon"><i class={route.icon}></i></span> : ""
+
+            if (route.children && route.children.length > 0) {
+                let all_route_level_2 = route.children
+
+                // console.log(parentPath+"/"+route_level_1_path);
+                return (
+                    <li className={`nav-item menu-items ${isActive(parentPath + "/" + route_level_1_path) ? 'active' : ''}`}>
+                        <button class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" onClick={() => openMenu(route_level_1_key)}>
+
+                            {route_level_1_icon}
+
+                            <span class="menu-title w-100 d-flex justify-content-between">{route_level_1_title} <i class="mdi mdi-chevron-down"></i></span>
+
+                        </button>
+                        <div className={`collapse ${isActive(parentPath + "/" + route_level_1_path) ? 'show' : ''}`} id={route_level_1_key}>
+                            <ul class="nav flex-column sub-menu" >
+                                {
+                                    all_route_level_2.map((route) => {
+                                        console.log(route);
+                                        let route_level_2_path = route.path
+                                        let route_level_2_key = route.key
+                                        let route_level_2_title = route.title
+                                        let route_level_2_icon = (route.icon) ? <span class="menu-icon2"><i class={route.icon}></i></span> : ""
+
+
+                                        if (route.children && route.children.length > 0) {
+
+                                            let all_route_level_3 = route.children
+
+                                            return (
+                                                <li class={`nav-item left-line ${isActive(parentPath + "/" + route_level_1_path + "/" + route_level_2_path) ? 'active' : ''}`}>
+
+                                                    <button className={`nav-link  d-flex justify-content-between  sidebarButton ${isActive(parentPath + "/" + route_level_1_path + "/" + route_level_2_path) ? 'active' : ''}`} onClick={() => openMenu2(route_level_2_key)} >
+                                                        {route_level_2_icon}
+                                                        <span class="menu-title w-100 d-flex justify-content-between">
+                                                            {route_level_2_title} <i class="mdi mdi-chevron-down"></i></span>
+                                                    </button>
+                                                    <div className={`collapse ${isActive(parentPath + "/" + route_level_1_path + "/" + route_level_2_path) ? 'show' : ''}`} id={route_level_2_key}>
+                                                        <ul class="nav flex-column sub-menu active" style={{ "padding-left": "15px" }}>
+                                                            {
+                                                                all_route_level_3.map((route) => {
+                                                                    let route_level_3_path = route.path
+                                                                    let route_level_3_key = route.key
+                                                                    let route_level_3_title = route.title
+                                                                    let route_level_2_icon = (route.icon) ? <span class="menu-icon2"><i class={route.icon}></i></span> : ""
+
+                                                                    return (
+                                                                        <li class={`nav-item left-line ${isActive(parentPath + "/" + route_level_1_path + "/" + route_level_2_path) ? 'active2' : ''}`}>
+                                                                            <button className={`nav-link sidebarButton ${activeItem === parentPath + "/" + route_level_1_path + "/" + route_level_2_path + "/" + route_level_3_path ? 'active2' : ''}`} onClick={(e) => changeRoute(e, parentPath + "/" + route_level_1_path + "/" + route_level_2_path + "/" + route_level_3_path)}>
+                                                                                {route_level_2_icon}{route_level_3_title}
+                                                                            </button>
+                                                                        </li>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            )
+                                        }
+                                        else {
+                                            return (
+                                                <li class={`nav-item left-line ${isActive(parentPath + "/" + route_level_1_path + "/" + route_level_2_path) ? 'active' : ''}`}> 
+                                                    <button className={`nav-link sidebarButton ${isActive(parentPath + "/" + route_level_1_path + "/" + route_level_2_path) ? 'active' : ''} `} 
+                                                        onClick={(e) => changeRoute(e, parentPath + "/" + route_level_1_path+"/"+route_level_2_path)}
+                                                    >
+                                                        {route_level_2_icon}{route_level_2_title}
+                                                    </button>
+                                                </li>
+                                            )
+                                        }
+
+                                    })
+                                }
+
+                            </ul>
+                        </div>
+                    </li>
+                )
+            } else {
+                return (
+                    <li className={`nav-item menu-items ${isActive(route_level_1_path) ? 'active' : ''}`}>
+                        <button class="nav-link sidebarButton" onClick={(e) => changeRoute(e, route_level_1_path)}>
+                            {route_level_1_icon}
+                            <span class="menu-title">{route_level_1_title}</span>
+                        </button>
+                    </li>
+                )
+            }
+        })
+    }
 
     return (
         <>
@@ -70,6 +170,7 @@ export default function Header({ keyName }) {
                     <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.svg" alt="logo" /></a>
                 </div>
                 <ul class="nav">
+
                     <li class="nav-item profile">
                         <div class="profile-desc">
                             <div class="profile-pic">
@@ -124,32 +225,32 @@ export default function Header({ keyName }) {
                     </li>
 
                     {/* main navigation start */}
-                    <li className={`nav-item menu-items ${isActive('/') ? 'active' : ''}`}>
-                        <button class="nav-link sidebarButton" onClick={(e) => changeRoute(e, '/')}>
+                    {/* <li className={`nav-item menu-items ${isActive('/academics') ? 'active' : ''}`}>
+                        <button class="nav-link sidebarButton" onClick={(e) => changeRoute(e, '/academics')}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-speedometer"></i>
                             </span>
                             <span class="menu-title">Dashboard</span>
                         </button>
-                    </li>
+                    </li> */}
 
-                    <li className={`nav-item menu-items ${isActive('/master') ? 'active' : ''}`}>
+                    {/* <li className={`nav-item menu-items ${isActive('academics/master') ? 'active' : ''}`}>
                         <button class="nav-link sidebarButton" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic" onClick={() => openMenu("master")}>
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
                             </span>
                             <span class="menu-title w-100 d-flex justify-content-between">Master <i class="mdi mdi-chevron-down"></i></span>
-                            
+
                         </button>
                         <div className={`collapse ${isActive('/master') ? 'show' : ''}`} id="master">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <button className={`nav-link  d-flex justify-content-between  sidebarButton ${isActive('/master/batch') ? 'active' : ''}`}  onClick={() => openMenu2("master-batch")} >
+                                    <button className={`nav-link  d-flex justify-content-between  sidebarButton ${isActive('academics/master/batch') ? 'active' : ''}`} onClick={() => openMenu2("master-batch")} >
                                         Batch <i class="mdi mdi-chevron-down"></i>
                                     </button>
-                                    <div className={`collapse2 ${isActive('/master/batch') ? 'show' : ''}`} id="master-batch">
-                                        <ul class="nav flex-column sub-menu" style={{"padding-left": "20px"}}>
-                                            <li class="nav-item"> <button className={`nav-link sidebarButton ${activeItem === '/master/batch/programme' ? 'active' : ''}`} onClick={(e) => changeRoute(e, '/master/batch/programme')}>programme</button></li>
+                                    <div className={`collapse ${isActive('/master/batch') ? 'show' : ''}`} id="master-batch">
+                                        <ul class="nav flex-column sub-menu" >
+                                            <li class="nav-item"> <button className={`nav-link sidebarButton ${activeItem === 'academics/master/batch/programme' ? 'active' : ''}`} onClick={(e) => changeRoute(e, 'academics/master/batch/programme')}>programme</button></li>
                                             <li class="nav-item"> <button className={`nav-link sidebarButton `} >Dropdowns</button></li>
                                             <li class="nav-item"> <button className={`nav-link sidebarButton `} >Typography</button></li>
                                         </ul>
@@ -160,7 +261,17 @@ export default function Header({ keyName }) {
                                 <li class="nav-item"> <button className={`nav-link sidebarButton `} >Typography</button></li>
                             </ul>
                         </div>
-                    </li>
+                    </li> */}
+
+
+                    {
+
+
+                        [renderAcademicsMenuItems(academics_route, "/academics"),
+                        renderAcademicsMenuItems(academics_route, "/student")]
+
+
+                    }
 
                     {/* main navigation end */}
 
@@ -170,4 +281,7 @@ export default function Header({ keyName }) {
 
         </>
     )
+
+
 }
+
