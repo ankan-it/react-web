@@ -12808,6 +12808,9 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
 }
+.card-hover:hover{
+  cursor: pointer;
+}
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -24200,7 +24203,8 @@ dl li {
   -webkit-align-items: center;
   align-items: center;
   white-space: nowrap;
-  padding: 0.8rem 10px 0.8rem 1.188rem;
+  /* padding: 0.8rem 10px 0.8rem 1.188rem; */
+  padding: 0.2rem 5px 0.2rem 1.2rem;
   color: #6c7293;
   -webkit-transition-duration: 0.45s;
   -moz-transition-duration: 0.45s;
@@ -24208,7 +24212,7 @@ dl li {
   transition-duration: 0.45s;
   transition-property: color;
   -webkit-transition-property: color;
-  height: 46px;
+  height: 31px;
   border-radius: 0px 100px 100px 0px;
 }
 .sidebar .nav .nav-item .nav-link i {
@@ -24463,8 +24467,8 @@ dl li {
   font-size: 0.8125rem;
   line-height: 1;
   background: rgba(108, 114, 147, 0.2);
-  width: 31px;
-  height: 31px;
+  width: 25px;
+  height: 25px;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -24477,8 +24481,8 @@ dl li {
   font-size: 1.0rem;
   line-height: 1;
   /* background: rgba(108, 114, 147, 0.2); */
-  width: 31px;
-  height: 31px;
+  width: 15px;
+  height: 10px;
   border-radius: 100%;
   display: flex;
   align-items: center;

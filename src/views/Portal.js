@@ -169,7 +169,7 @@ const Portal = () => {
                         <div class="content-wrapper">
                             <div class="row w-100">
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card"  onClick={()=>change_portal("/academics")}>
+                                    <div class="card card-hover"  onClick={()=>change_portal("/academics")}>
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-center">
@@ -188,7 +188,7 @@ const Portal = () => {
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card" >
-                                    <div class="card" >
+                                    <div class="card card-hover" >
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12  d-flex justify-content-center">
@@ -207,7 +207,7 @@ const Portal = () => {
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card card-hover">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-center">
@@ -226,7 +226,7 @@ const Portal = () => {
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card card-hover">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-center">
@@ -245,7 +245,7 @@ const Portal = () => {
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card card-hover">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-center">
@@ -264,7 +264,7 @@ const Portal = () => {
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                                    <div class="card">
+                                    <div class="card card-hover">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-center">

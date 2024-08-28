@@ -25,6 +25,7 @@ const Login = () => {
     useEffect(()=>{
 
         if (isExpired) {
+            localStorage.removeItem('user_data');
             localStorage.removeItem('token');
             // console.log("Ankan");
             // return <Navigate to="/login" />;
@@ -48,6 +49,7 @@ const Login = () => {
             
             if(response.data.status == 'success'){
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user_data', JSON.stringify(response.data.data));
                 setErrorMessage("");
                 navigate('/');
                  

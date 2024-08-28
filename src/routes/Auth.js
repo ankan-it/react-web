@@ -16,6 +16,7 @@ export const ProtectedRoute = ({ element }) => {
     console.log(localStorage.getItem("token"), isAuthenticated());  
 
     if (isAuthenticated() || isExpired) {
+        localStorage.removeItem('user_data');
         localStorage.removeItem('token');
         return <Navigate to="/login" />;
     }

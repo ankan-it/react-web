@@ -3,6 +3,7 @@ import {ProtectedRoute} from "./Auth";
 
 import Dashboard from '../views/Dashboard';
 import Table from "../views/Table";
+import Programme from "../views/Academics/Master/Batch/programme"
 
 
 
@@ -12,7 +13,7 @@ export const academics_route=[
         path: "/academics",
         title: "Dashboard",
         key: "academics.dashboard",
-        icon:"mdi mdi-laptop",
+        // icon:"mdi mdi-laptop",
         style: {height:"500px !important"},
         element:<ProtectedRoute element={<Dashboard />} />
     },
@@ -20,7 +21,7 @@ export const academics_route=[
         path: "master",
         title: "Master",
         key: "academics.master",
-        icon:"mdi mdi-arrow-right-bold",
+        // icon:"mdi mdi-arrow-right-bold",
         // element:<ProtectedRoute element={ <Table />} />,
         children:[
             {
@@ -35,7 +36,7 @@ export const academics_route=[
                         title: "Programme",
                         key: "academics.master.batch.programme",
                         icon:"mdi mdi-arrow-right",
-                        element:<ProtectedRoute element={<Dashboard />} />
+                        element:<ProtectedRoute element={<Programme />} />
                     },
                     {
                         path: "Batch",

@@ -68,7 +68,7 @@ export default function Header({ keyName }) {
             let route_level_1_path = route.path
             let route_level_1_key = route.key
             let route_level_1_title = route.title
-            let route_level_1_icon = (route.icon) ? <span class="menu-icon"><i class={route.icon}></i></span> : ""
+            let route_level_1_icon = (route.icon) ? <span class="menu-icon"><i class={route.icon}></i></span> : <span class="menu-icon"><i class="mdi mdi-animation"></i></span>
 
             if (route.children && route.children.length > 0) {
                 let all_route_level_2 = route.children
@@ -264,14 +264,7 @@ export default function Header({ keyName }) {
                     </li> */}
 
 
-                    {
-
-
-                        [renderAcademicsMenuItems(academics_route, "/academics"),
-                        renderAcademicsMenuItems(academics_route, "/student")]
-
-
-                    }
+                    {renderAcademicsMenuItems(academics_route, "/academics")}
 
                     {/* main navigation end */}
 
