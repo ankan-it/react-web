@@ -82,7 +82,7 @@ const Programme = () => {
                 </div>
             </div>
 
-            <AddProgrammeModal  showHide={showModal} />
+            <AddProgrammeModal />
         </>
     );
 }
